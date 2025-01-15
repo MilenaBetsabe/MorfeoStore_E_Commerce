@@ -7,8 +7,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Form, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
-
+import {Link} from 'react-router-dom';
+import Image from 'react-bootstrap/Image';
+import morfeo_store from '../assets/img/Morfeo2.svg';
 
 const NavBar = () => {
 
@@ -21,9 +22,11 @@ const NavBar = () => {
     };
 
     return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
             <Container fluid>
-                <Navbar.Brand href="#">Morfeo Store</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">
+                    <Image src={morfeo_store} width="70" height="auto" alt="Morfeo Store Logo" fluid/>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -31,23 +34,19 @@ const NavBar = () => {
                         style={{ maxHeight: "200px" }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
                         <NavDropdown title="Alimento" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action2">Adulto</NavDropdown.Item>
-                            <NavDropdown.Item href="#action3">Cachorro</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">Senior</NavDropdown.Item>
-                            <NavDropdown.Item href="#action5">Light / Castrados</NavDropdown.Item>
-                            <NavDropdown.Item href="#action6">Necesidades Especiales</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/category/adulto">Adulto</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/category/cachorro">Cachorro</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/category/senior">Senior</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Higiene" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="#action7">Arena y Piedritas Sanitarias</NavDropdown.Item>
-                            <NavDropdown.Item href="#action3">Bandejas y Accesorios Sanitarios</NavDropdown.Item>
-                            <NavDropdown.Item href="#action4">Cepillos y Cardinas</NavDropdown.Item>
-                            <NavDropdown.Item href="#action5">Repelentes</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/category/accesorios">Accesorios Sanitarios</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/category/cepillos">Cepillos y Cardinas</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/category/repelentes">Repelentes</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#action7">Diversión Gatuna</Nav.Link>
+                        <Nav.Link as={Link} to="/category/diversion">Diversión Gatuna</Nav.Link>
                     </Nav>
-                    <Form inline className="d-flex" style={{ maxWidth: "500px" }}>
+                    <Form  className="d-flex" style={{ maxWidth: "500px" }}>
                         <InputGroup>
                             <InputGroup.Text>
                                 <FontAwesomeIcon icon={faSearch} />
@@ -56,7 +55,6 @@ const NavBar = () => {
                         </InputGroup>
                         <CartWidget />
                     </Form>
-                    
                 </Navbar.Collapse>
             </Container>
         </Navbar>
