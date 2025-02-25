@@ -24,7 +24,6 @@ export function getItemById(itemID) {
 
         setTimeout(() => {
             const requestedProduct = products.find((item) => item.id === Number(itemID))
-            // TODO: validar si encontramos un producto -> si no es así, rechazamos la promesa
             resolve(requestedProduct)
         }, 500)
     })
