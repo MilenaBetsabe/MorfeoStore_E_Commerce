@@ -1,31 +1,20 @@
-import { useState } from 'react';
+import { useContext } from "react";
 import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
+import cartContext from "../context/cartContext";
 
 
 const CartWidget = () => {
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const { handleShowCart, countItemsInCart }= useContext(cartContext);
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow} className='position-relative me-2 ms-3' style={{ height: "35px",width: "50px" }}>
+            <Button onClick={handleShowCart} variant="primary" className='position-relative me-2 ms-3' style={{ height: "35px",width: "50px" }}>
                 <FontAwesomeIcon icon={faCartArrowDown} />
-                <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'> 0 </span>
+                <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'> {countItemsInCart()} </span>
             </Button>
-            <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Tu Carrito</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    
-                </Offcanvas.Body>
-            </Offcanvas>
         </>
     );
 }

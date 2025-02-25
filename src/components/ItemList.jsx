@@ -29,7 +29,10 @@ const CardProduct = ({ products }) => {
                                 <Card.Text style={{ margin: '.3rem' }} className={product.stock > 0 ? 'text-success' : 'text-danger'}>
                                     {product.stock < 0 ? "Agotado" : `Disponible ${product.stock} unid`}
                                 </Card.Text>
-                                <Button variant="primary">Agregar al Carrito</Button>
+                                <Link to={`/item/${product.id}`}>
+                                    <Button variant="primary">Detalle</Button>
+                                </Link>
+
                             </Card.Body>
                         </Card>
                     </Col>
